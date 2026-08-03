@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { formatPrice, formatDuration } from "@/lib/format";
 
 type Service = {
@@ -9,7 +8,6 @@ type Service = {
   category: string;
   durationMin: number;
   priceCents: number;
-  image: string;
   popular: boolean;
 };
 
@@ -17,30 +15,21 @@ export default function ServiceCard({ service }: { service: Service }) {
   return (
     <Link
       href={`/rezerwacja?service=${service.slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-surface transition hover:border-amber"
+      className="group block border-b border-line py-4 transition hover:bg-surface sm:py-5"
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-cream-dark">
-        <Image
-          src={service.image}
-          alt={service.name}
-          fill
-          className="object-cover transition duration-300 group-hover:scale-105"
-          sizes="(min-width: 768px) 25vw, 50vw"
-        />
-        {service.popular && (
-          <span className="absolute left-3 top-3 rounded-full bg-amber px-2.5 py-1 text-[11px] font-medium text-onamber">
-            Popularne
-          </span>
-        )}
+      <div className="leader-row">
+        <span className="font-serif-display text-base text-ink sm:text-lg">
+          {service.name}
+          {service.popular && <span className="ml-2 align-middle text-[10px] uppercase tracking-wide text-amber">★ popularne</span>}
+        </span>
+        <span className="leader-fill" />
+        <span className="whitespace-nowrap text-base font-medium text-amber transition group-hover:text-ink sm:text-lg">
+          {formatPrice(service.priceCents)}
+        </span>
       </div>
-      <div className="flex flex-1 flex-col p-4">
-        <span className="text-[11px] uppercase tracking-wide text-ink-soft">{service.category}</span>
-        <h3 className="mt-1 font-serif-display text-lg text-ink">{service.name}</h3>
-        <p className="mt-1.5 line-clamp-2 text-sm text-ink-soft">{service.description}</p>
-        <div className="mt-3 flex items-center justify-between border-t border-line pt-3 text-sm">
-          <span className="text-ink-soft">{formatDuration(service.durationMin)}</span>
-          <span className="font-medium text-ink">{formatPrice(service.priceCents)}</span>
-        </div>
+      <div className="mt-1 flex items-center justify-between text-xs text-ink-soft">
+        <span className="line-clamp-1">{service.description}</span>
+        <span className="ml-3 shrink-0">{formatDuration(service.durationMin)}</span>
       </div>
     </Link>
   );

@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import BookingsManager, { type AdminBooking } from "@/components/admin/BookingsManager";
+import { Clock, CalendarDays, TrendingUp, CalendarCheck } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -75,9 +76,9 @@ export default async function AdminBookingsPage({
   const prev30 = within(60, 30);
 
   const kpis = [
-    { label: "Dziś", revenue: sumRevenue(today), count: countActive(today), change: pctChange(sumRevenue(today), sumRevenue(prevDay)) },
-    { label: "Ostatnie 7 dni", revenue: sumRevenue(last7), count: countActive(last7), change: pctChange(sumRevenue(last7), sumRevenue(prev7)) },
-    { label: "Ostatnie 30 dni", revenue: sumRevenue(last30), count: countActive(last30), change: pctChange(sumRevenue(last30), sumRevenue(prev30)) },
+    { label: "Dziś", icon: Clock, revenue: sumRevenue(today), count: countActive(today), change: pctChange(sumRevenue(today), sumRevenue(prevDay)) },
+    { label: "Ostatnie 7 dni", icon: CalendarDays, revenue: sumRevenue(last7), count: countActive(last7), change: pctChange(sumRevenue(last7), sumRevenue(prev7)) },
+    { label: "Ostatnie 30 dni", icon: TrendingUp, revenue: sumRevenue(last30), count: countActive(last30), change: pctChange(sumRevenue(last30), sumRevenue(prev30)) },
   ];
 
   const totalRevenue = sumRevenue(bookings);
@@ -103,7 +104,10 @@ export default async function AdminBookingsPage({
       <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="font-serif-display text-2xl text-ink sm:text-3xl">Panel administracyjny</h1>
-          <p className="mt-1 text-sm text-ink-soft">{upcomingCount} nadchodzących wizyt</p>
+          <p className="mt-1 flex items-center gap-1.5 text-sm text-ink-soft">
+            <CalendarCheck size={14} className="text-amber" />
+            {upcomingCount} nadchodzących wizyt
+          </p>
         </div>
         <div className="text-left sm:text-right">
           <div className="text-xs uppercase tracking-wide text-ink-soft">Przychód łącznie</div>
@@ -116,7 +120,10 @@ export default async function AdminBookingsPage({
       <div className="mt-6 grid grid-cols-1 gap-3 sm:mt-8 sm:grid-cols-3 sm:gap-4">
         {kpis.map((k) => (
           <div key={k.label} className="rounded-none border border-line bg-surface p-4 sm:p-5">
-            <div className="text-xs uppercase tracking-wide text-ink-soft">{k.label}</div>
+            <div className="flex items-center gap-1.5 text-xs uppercase tracking-wide text-ink-soft">
+              <k.icon size={13} className="text-amber" />
+              {k.label}
+            </div>
             <div className="mt-2 flex items-baseline gap-2">
               <span className="font-serif-display text-xl text-ink sm:text-2xl">
                 {new Intl.NumberFormat("pl-PL", { style: "currency", currency: "PLN" }).format(k.revenue / 100)}

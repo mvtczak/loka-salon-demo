@@ -164,7 +164,7 @@ export default function BookingWizard({
                     key={s.id}
                     onClick={() => setServiceId(s.id)}
                     className={`flex items-center justify-between rounded-xl border px-4 py-3 text-left text-sm transition ${
-                      serviceId === s.id ? "border-ink bg-ink text-cream" : "border-line bg-white text-ink hover:border-amber"
+                      serviceId === s.id ? "border-ink bg-ink text-cream" : "border-line bg-surface text-ink hover:border-amber"
                     }`}
                   >
                     <span>
@@ -198,7 +198,7 @@ export default function BookingWizard({
                 key={s.id}
                 onClick={() => setStylistId(s.id)}
                 className={`rounded-xl border px-4 py-3 text-left text-sm transition ${
-                  stylistId === s.id ? "border-ink bg-ink text-cream" : "border-line bg-white text-ink hover:border-amber"
+                  stylistId === s.id ? "border-ink bg-ink text-cream" : "border-line bg-surface text-ink hover:border-amber"
                 }`}
               >
                 <span className="block font-medium">{s.name}</span>
@@ -235,7 +235,7 @@ export default function BookingWizard({
                     key={ds}
                     onClick={() => setDateStr(ds)}
                     className={`flex shrink-0 flex-col items-center rounded-xl border px-3.5 py-2.5 text-xs transition ${
-                      active ? "border-ink bg-ink text-cream" : "border-line bg-white text-ink hover:border-amber"
+                      active ? "border-ink bg-ink text-cream" : "border-line bg-surface text-ink hover:border-amber"
                     }`}
                   >
                     <span className="uppercase">{d.toLocaleDateString("pl-PL", { weekday: "short" })}</span>
@@ -260,7 +260,7 @@ export default function BookingWizard({
                       key={t}
                       onClick={() => setTime(t)}
                       className={`rounded-lg border px-2 py-2 text-sm transition ${
-                        time === t ? "border-ink bg-ink text-cream" : "border-line bg-white text-ink hover:border-amber"
+                        time === t ? "border-ink bg-ink text-cream" : "border-line bg-surface text-ink hover:border-amber"
                       }`}
                     >
                       {t}
@@ -289,11 +289,16 @@ export default function BookingWizard({
       {/* Step 3: Contact details */}
       {step === 3 && (
         <div className="space-y-5">
-          <div className="rounded-xl border border-line bg-white p-4 text-sm">
+          <div className="rounded-xl border border-line bg-surface p-4 text-sm">
             <div className="flex justify-between"><span className="text-ink-soft">Usługa</span><span className="text-ink">{selectedService?.name}</span></div>
             <div className="mt-1.5 flex justify-between"><span className="text-ink-soft">Stylista</span><span className="text-ink">{selectedStylist?.name}</span></div>
             <div className="mt-1.5 flex justify-between"><span className="text-ink-soft">Termin</span><span className="text-ink">{dateStr} · {time}</span></div>
             <div className="mt-1.5 flex justify-between border-t border-line pt-1.5"><span className="text-ink-soft">Cena</span><span className="font-medium text-ink">{selectedService && formatPrice(selectedService.priceCents)}</span></div>
+          </div>
+
+          <div className="rounded-xl border border-amber/40 bg-amber/10 px-4 py-3 text-xs text-amber sm:text-sm">
+            To projekt demonstracyjny portfolio — nie podawaj tu prawdziwych danych osobowych. Wpisz dowolne
+            przykładowe imię, e-mail i numer telefonu.
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
@@ -303,7 +308,7 @@ export default function BookingWizard({
                 required
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="mt-1 w-full rounded-lg border border-line bg-white px-3 py-2.5 text-ink outline-none focus:border-amber"
+                className="mt-1 w-full rounded-lg border border-line bg-surface px-3 py-2.5 text-ink outline-none focus:border-amber"
               />
             </label>
             <label className="text-sm text-ink-soft">
@@ -312,7 +317,7 @@ export default function BookingWizard({
                 required
                 value={form.phone}
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                className="mt-1 w-full rounded-lg border border-line bg-white px-3 py-2.5 text-ink outline-none focus:border-amber"
+                className="mt-1 w-full rounded-lg border border-line bg-surface px-3 py-2.5 text-ink outline-none focus:border-amber"
               />
             </label>
           </div>
@@ -323,7 +328,7 @@ export default function BookingWizard({
               type="email"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="mt-1 w-full rounded-lg border border-line bg-white px-3 py-2.5 text-ink outline-none focus:border-amber"
+              className="mt-1 w-full rounded-lg border border-line bg-surface px-3 py-2.5 text-ink outline-none focus:border-amber"
             />
           </label>
           <label className="block text-sm text-ink-soft">
@@ -332,11 +337,11 @@ export default function BookingWizard({
               value={form.notes}
               onChange={(e) => setForm({ ...form, notes: e.target.value })}
               rows={2}
-              className="mt-1 w-full rounded-lg border border-line bg-white px-3 py-2.5 text-ink outline-none focus:border-amber"
+              className="mt-1 w-full rounded-lg border border-line bg-surface px-3 py-2.5 text-ink outline-none focus:border-amber"
             />
           </label>
 
-          {error && <p className="text-sm text-red-600">{error}</p>}
+          {error && <p className="text-sm text-red-400">{error}</p>}
 
           <div className="flex gap-3">
             <button onClick={() => setStep(2)} className="rounded-full border border-line px-6 py-3 text-sm text-ink transition hover:border-amber">

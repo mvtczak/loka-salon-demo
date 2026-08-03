@@ -30,7 +30,7 @@ export default async function ServicesPage({
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14">
       <div className="mb-8 sm:mb-10">
-        <span className="text-xs uppercase tracking-[0.3em] text-amber-dark">Cennik</span>
+        <span className="text-xs uppercase tracking-[0.3em] text-amber">Cennik</span>
         <h1 className="mt-2 font-serif-display text-2xl text-ink sm:text-3xl">Usługi</h1>
       </div>
 
@@ -38,7 +38,7 @@ export default async function ServicesPage({
         <Link
           href="/uslugi"
           className={`rounded-full border px-4 py-1.5 text-sm transition ${
-            !category ? "border-ink bg-ink text-white" : "border-line text-ink-soft hover:border-amber"
+            !category ? "border-ink bg-ink text-cream" : "border-line text-ink-soft hover:border-amber"
           }`}
         >
           Wszystkie
@@ -48,7 +48,7 @@ export default async function ServicesPage({
             key={c}
             href={`/uslugi?category=${encodeURIComponent(c)}`}
             className={`rounded-full border px-4 py-1.5 text-sm transition ${
-              category === c ? "border-ink bg-ink text-white" : "border-line text-ink-soft hover:border-amber"
+              category === c ? "border-ink bg-ink text-cream" : "border-line text-ink-soft hover:border-amber"
             }`}
           >
             {c}

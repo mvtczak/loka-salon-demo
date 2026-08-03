@@ -1,15 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f2ea;
-  --foreground: #211c17;
-  --cream: #f6f2ea;
-  --cream-dark: #eae1d0;
-  --ink: #211c17;
-  --ink-soft: #6f6459;
-  --amber: #b8863b;
-  --amber-dark: #96692a;
-  --line: #ded2b9;
+  --background: #15120d;
+  --foreground: #f1ebdf;
+  --cream: #15120d;
+  --cream-dark: #1d1911;
+  --surface: #241f16;
+  --ink: #f1ebdf;
+  --ink-soft: #a89a84;
+  --amber: #d1a355;
+  --amber-dark: #a97e3d;
+  --line: #362e21;
+  --on-amber: #211a10;
 }
 
 @theme inline {
@@ -17,11 +19,13 @@
   --color-foreground: var(--foreground);
   --color-cream: var(--cream);
   --color-cream-dark: var(--cream-dark);
+  --color-surface: var(--surface);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-amber: var(--amber);
   --color-amber-dark: var(--amber-dark);
   --color-line: var(--line);
+  --color-onamber: var(--on-amber);
   --font-sans: var(--font-inter);
   --font-serif: var(--font-playfair);
 }
@@ -38,5 +42,5 @@ body {
 
 ::selection {
   background: var(--amber);
-  color: #fff;
+  color: #17130d;
 }

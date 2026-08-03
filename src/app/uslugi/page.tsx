@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import ServiceCard from "@/components/ServiceCard";
+import Eyebrow from "@/components/Eyebrow";
 
 export const dynamic = "force-dynamic";
 
@@ -30,7 +31,7 @@ export default async function ServicesPage({
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-14">
       <div className="mb-8 sm:mb-10">
-        <span className="text-xs uppercase tracking-[0.3em] text-amber">Cennik</span>
+        <Eyebrow>Cennik</Eyebrow>
         <h1 className="mt-2 font-serif-display text-2xl text-ink sm:text-3xl">Usługi</h1>
       </div>
 

@@ -115,7 +115,7 @@ export default async function AdminBookingsPage({
 
       <div className="mt-6 grid grid-cols-1 gap-3 sm:mt-8 sm:grid-cols-3 sm:gap-4">
         {kpis.map((k) => (
-          <div key={k.label} className="rounded-2xl border border-line bg-surface p-4 sm:p-5">
+          <div key={k.label} className="rounded-none border border-line bg-surface p-4 sm:p-5">
             <div className="text-xs uppercase tracking-wide text-ink-soft">{k.label}</div>
             <div className="mt-2 flex items-baseline gap-2">
               <span className="font-serif-display text-xl text-ink sm:text-2xl">
@@ -132,14 +132,14 @@ export default async function AdminBookingsPage({
         ))}
       </div>
 
-      <div className="mt-6 rounded-2xl border border-line bg-surface p-4 sm:mt-8 sm:p-6">
+      <div className="mt-6 rounded-none border border-line bg-surface p-4 sm:mt-8 sm:p-6">
         <h2 className="text-sm font-medium text-ink">Przychód dzienny — ostatnie 14 dni</h2>
         <div className="mt-5 overflow-x-auto">
           <div className="flex min-w-[480px] items-end gap-1.5 sm:min-w-0 sm:gap-2" style={{ height: 120 }}>
             {days.map((d) => (
               <div key={d.label} className="flex flex-1 flex-col items-center gap-1.5">
                 <div
-                  className="w-full rounded-t bg-amber/70 transition hover:bg-amber"
+                  className="w-full rounded-none bg-amber/70 transition hover:bg-amber"
                   style={{ height: `${Math.max(4, (d.revenue / maxDayRevenue) * 100)}px` }}
                   title={`${d.label}: ${new Intl.NumberFormat("pl-PL", { style: "currency", currency: "PLN" }).format(d.revenue / 100)}`}
                 />

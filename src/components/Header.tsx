@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Calendar, Menu, X } from "lucide-react";
 
 const navLinks = [
   { href: "/uslugi", label: "Usługi" },
@@ -39,8 +40,9 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <Link
             href="/rezerwacja"
-            className="hidden whitespace-nowrap border border-amber bg-amber px-5 py-2.5 text-xs uppercase tracking-[0.15em] text-onamber transition hover:bg-transparent hover:text-amber sm:inline-block"
+            className="hidden items-center gap-2 whitespace-nowrap border border-amber bg-amber px-5 py-2.5 text-xs uppercase tracking-[0.15em] text-onamber transition hover:bg-transparent hover:text-amber sm:inline-flex"
           >
+            <Calendar size={14} strokeWidth={2} />
             Zarezerwuj wizytę
           </Link>
           <button
@@ -48,9 +50,7 @@ export default function Header() {
             className="flex h-9 w-9 items-center justify-center border border-line text-ink md:hidden"
             aria-label="Otwórz menu"
           >
-            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-              <path d="M2.5 5h15M2.5 10h15M2.5 15h15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
+            {menuOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
         </div>
       </div>
@@ -70,8 +70,9 @@ export default function Header() {
           <Link
             href="/rezerwacja"
             onClick={() => setMenuOpen(false)}
-            className="my-3 border border-amber bg-amber px-5 py-2.5 text-center text-onamber"
+            className="my-3 flex items-center justify-center gap-2 border border-amber bg-amber px-5 py-2.5 text-center text-onamber"
           >
+            <Calendar size={14} strokeWidth={2} />
             Zarezerwuj wizytę
           </Link>
         </nav>

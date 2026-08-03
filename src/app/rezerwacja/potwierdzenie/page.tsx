@@ -24,7 +24,7 @@ export default async function ConfirmationPage({
     return (
       <div className="mx-auto max-w-md px-4 py-20 text-center sm:px-6">
         <h1 className="font-serif-display text-2xl text-ink">Nie znaleziono rezerwacji</h1>
-        <Link href="/rezerwacja" className="mt-4 inline-block text-sm text-amber-dark hover:text-ink">
+        <Link href="/rezerwacja" className="mt-4 inline-block text-sm text-amber hover:text-ink">
           Zarezerwuj wizytę →
         </Link>
       </div>
@@ -43,7 +43,7 @@ export default async function ConfirmationPage({
         Potwierdzenie zostało &bdquo;wysłane&rdquo; na adres {booking.customerEmail} (demo — e-mail nie jest realnie wysyłany).
       </p>
 
-      <div className="mt-8 rounded-2xl border border-line bg-white p-5 text-left text-sm">
+      <div className="mt-8 rounded-2xl border border-line bg-surface p-5 text-left text-sm">
         <div className="flex justify-between"><span className="text-ink-soft">Usługa</span><span className="text-ink">{booking.service.name}</span></div>
         <div className="mt-2 flex justify-between"><span className="text-ink-soft">Stylista</span><span className="text-ink">{booking.stylist.name}</span></div>
         <div className="mt-2 flex justify-between"><span className="text-ink-soft">Termin</span><span className="text-ink">{formatDateLong(booking.date)}, {booking.startTime}</span></div>

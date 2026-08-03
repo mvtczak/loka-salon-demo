@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import ServiceCard from "@/components/ServiceCard";
 import StylistCard from "@/components/StylistCard";
+import Eyebrow from "@/components/Eyebrow";
+import { Calendar, ArrowRight, ScissorsIcon, Quote } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -69,10 +71,13 @@ export default async function HomePage() {
             fryzjera i dogodny termin w niecałe dwie minuty.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/rezerwacja" className="border border-amber bg-amber px-6 py-3 text-xs uppercase tracking-[0.15em] text-onamber transition hover:bg-transparent hover:text-amber">
+            <Link href="/rezerwacja" className="group inline-flex items-center gap-2.5 border border-amber bg-amber px-6 py-3 text-xs uppercase tracking-[0.15em] text-onamber transition hover:bg-transparent hover:text-amber">
+              <Calendar size={14} strokeWidth={2} />
               Zarezerwuj wizytę
+              <ArrowRight size={14} strokeWidth={2} className="transition group-hover:translate-x-1" />
             </Link>
-            <Link href="/uslugi" className="border border-ink-soft/40 px-6 py-3 text-xs uppercase tracking-[0.15em] text-ink transition hover:border-amber">
+            <Link href="/uslugi" className="inline-flex items-center gap-2.5 border border-ink-soft/40 px-6 py-3 text-xs uppercase tracking-[0.15em] text-ink transition hover:border-amber">
+              <ScissorsIcon size={14} strokeWidth={2} />
               Zobacz cennik
             </Link>
           </div>
@@ -83,7 +88,7 @@ export default async function HomePage() {
       <section className="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20">
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
           <div>
-            <span className="text-xs uppercase tracking-[0.3em] text-amber">Cennik</span>
+            <Eyebrow>Cennik</Eyebrow>
             <h2 className="mt-2 font-serif-display text-2xl text-ink sm:text-3xl">Najczęściej wybierane usługi</h2>
           </div>
           <Link href="/uslugi" className="text-xs uppercase tracking-[0.15em] text-amber hover:text-ink">
@@ -101,7 +106,7 @@ export default async function HomePage() {
       <section className="border-y border-line bg-cream-dark/50">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20">
           <div className="text-center">
-            <span className="text-xs uppercase tracking-[0.3em] text-amber">Zespół</span>
+            <Eyebrow align="center">Zespół</Eyebrow>
             <h2 className="mt-2 font-serif-display text-2xl text-ink sm:text-3xl">Poznaj naszych stylistów</h2>
           </div>
           <div className="mt-10 grid grid-cols-2 gap-8 sm:mt-14 md:grid-cols-5 md:gap-6">
@@ -115,7 +120,7 @@ export default async function HomePage() {
       {/* Gallery */}
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20">
         <div className="text-center">
-          <span className="text-xs uppercase tracking-[0.3em] text-amber">Galeria</span>
+          <Eyebrow align="center">Galeria</Eyebrow>
           <h2 className="mt-2 font-serif-display text-2xl text-ink sm:text-3xl">Nasze realizacje</h2>
         </div>
         <div className="mt-10 grid grid-cols-2 gap-3 sm:mt-14 sm:gap-4 md:grid-cols-3">
@@ -143,15 +148,16 @@ export default async function HomePage() {
       {/* Testimonials */}
       <section id="opinie" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20">
         <div className="text-center">
-          <span className="text-xs uppercase tracking-[0.3em] text-amber">Opinie</span>
+          <Eyebrow align="center">Opinie</Eyebrow>
           <h2 className="mt-2 font-serif-display text-2xl text-ink sm:text-3xl">Co mówią nasi klienci</h2>
         </div>
         <div className="mt-10 grid gap-6 sm:mt-14 md:grid-cols-3">
           {testimonials.map((t) => (
-            <div key={t.name} className="rounded-none border border-line bg-surface p-6">
-              <div className="text-amber">{"★".repeat(t.rating)}</div>
+            <div key={t.name} className="relative border border-line bg-surface p-6">
+              <Quote size={28} className="text-amber/30" fill="currentColor" strokeWidth={0} />
+              <div className="mt-2 text-amber">{"★".repeat(t.rating)}</div>
               <p className="mt-3 text-sm text-ink-soft">&ldquo;{t.text}&rdquo;</p>
-              <div className="mt-4 text-sm font-medium text-ink">{t.name}</div>
+              <div className="mt-4 text-sm font-medium uppercase tracking-wide text-ink">{t.name}</div>
             </div>
           ))}
         </div>
@@ -164,9 +170,11 @@ export default async function HomePage() {
           <p className="mt-3 text-cream/70">Zarezerwuj wizytę online — bez telefonów, bez czekania.</p>
           <Link
             href="/rezerwacja"
-            className="mt-7 inline-block rounded-none bg-amber px-7 py-3 text-sm text-onamber transition hover:bg-amber-dark"
+            className="group mt-7 inline-flex items-center gap-2.5 border border-amber bg-amber px-7 py-3 text-xs uppercase tracking-[0.15em] text-onamber transition hover:bg-transparent hover:text-amber"
           >
+            <Calendar size={14} strokeWidth={2} />
             Zarezerwuj wizytę
+            <ArrowRight size={14} strokeWidth={2} className="transition group-hover:translate-x-1" />
           </Link>
         </div>
       </section>

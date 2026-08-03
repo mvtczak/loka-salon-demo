@@ -50,7 +50,7 @@ export default async function HomePage() {
       <section className="relative overflow-hidden">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 sm:py-20 md:grid-cols-2 md:py-28">
           <div>
-            <span className="text-xs uppercase tracking-[0.3em] text-amber-dark">Studio fryzjerskie</span>
+            <span className="text-xs uppercase tracking-[0.3em] text-amber">Studio fryzjerskie</span>
             <h1 className="mt-4 font-serif-display text-3xl leading-tight text-ink sm:text-4xl md:text-5xl">
               Rzemiosło, styl i uwaga do szczegółu
             </h1>
@@ -84,10 +84,10 @@ export default async function HomePage() {
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20">
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
           <div>
-            <span className="text-xs uppercase tracking-[0.3em] text-amber-dark">Popularne</span>
+            <span className="text-xs uppercase tracking-[0.3em] text-amber">Popularne</span>
             <h2 className="mt-2 font-serif-display text-2xl text-ink sm:text-3xl">Najczęściej wybierane usługi</h2>
           </div>
-          <Link href="/uslugi" className="text-sm text-amber-dark hover:text-ink">
+          <Link href="/uslugi" className="text-sm text-amber hover:text-ink">
             Zobacz wszystkie usługi →
           </Link>
         </div>
@@ -102,7 +102,7 @@ export default async function HomePage() {
       <section className="border-y border-line bg-cream-dark/50">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20">
           <div className="text-center">
-            <span className="text-xs uppercase tracking-[0.3em] text-amber-dark">Zespół</span>
+            <span className="text-xs uppercase tracking-[0.3em] text-amber">Zespół</span>
             <h2 className="mt-2 font-serif-display text-2xl text-ink sm:text-3xl">Poznaj naszych stylistów</h2>
           </div>
           <div className="mt-10 grid grid-cols-2 gap-8 sm:mt-14 md:grid-cols-5 md:gap-6">
@@ -113,15 +113,43 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Gallery */}
+      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20">
+        <div className="text-center">
+          <span className="text-xs uppercase tracking-[0.3em] text-amber">Galeria</span>
+          <h2 className="mt-2 font-serif-display text-2xl text-ink sm:text-3xl">Nasze realizacje</h2>
+        </div>
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:mt-14 sm:gap-4 md:grid-cols-3">
+          {[
+            "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=800&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=800&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1560869713-7d0a29430803?q=80&w=800&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=800&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=800&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=800&auto=format&fit=crop",
+          ].map((src, i) => (
+            <div key={i} className="relative aspect-square overflow-hidden rounded-2xl bg-cream-dark">
+              <Image
+                src={src}
+                alt="Realizacja LOKA"
+                fill
+                className="object-cover transition duration-300 hover:scale-105"
+                sizes="(min-width: 768px) 33vw, 50vw"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Testimonials */}
       <section id="opinie" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20">
         <div className="text-center">
-          <span className="text-xs uppercase tracking-[0.3em] text-amber-dark">Opinie</span>
+          <span className="text-xs uppercase tracking-[0.3em] text-amber">Opinie</span>
           <h2 className="mt-2 font-serif-display text-2xl text-ink sm:text-3xl">Co mówią nasi klienci</h2>
         </div>
         <div className="mt-10 grid gap-6 sm:mt-14 md:grid-cols-3">
           {testimonials.map((t) => (
-            <div key={t.name} className="rounded-2xl border border-line bg-white p-6">
+            <div key={t.name} className="rounded-2xl border border-line bg-surface p-6">
               <div className="text-amber">{"★".repeat(t.rating)}</div>
               <p className="mt-3 text-sm text-ink-soft">&ldquo;{t.text}&rdquo;</p>
               <div className="mt-4 text-sm font-medium text-ink">{t.name}</div>
@@ -137,7 +165,7 @@ export default async function HomePage() {
           <p className="mt-3 text-cream/70">Zarezerwuj wizytę online — bez telefonów, bez czekania.</p>
           <Link
             href="/rezerwacja"
-            className="mt-7 inline-block rounded-full bg-amber px-7 py-3 text-sm text-white transition hover:bg-amber-dark"
+            className="mt-7 inline-block rounded-full bg-amber px-7 py-3 text-sm text-onamber transition hover:bg-amber-dark"
           >
             Zarezerwuj wizytę
           </Link>

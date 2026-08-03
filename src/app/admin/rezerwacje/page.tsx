@@ -115,14 +115,14 @@ export default async function AdminBookingsPage({
 
       <div className="mt-6 grid grid-cols-1 gap-3 sm:mt-8 sm:grid-cols-3 sm:gap-4">
         {kpis.map((k) => (
-          <div key={k.label} className="rounded-2xl border border-line bg-white p-4 sm:p-5">
+          <div key={k.label} className="rounded-2xl border border-line bg-surface p-4 sm:p-5">
             <div className="text-xs uppercase tracking-wide text-ink-soft">{k.label}</div>
             <div className="mt-2 flex items-baseline gap-2">
               <span className="font-serif-display text-xl text-ink sm:text-2xl">
                 {new Intl.NumberFormat("pl-PL", { style: "currency", currency: "PLN" }).format(k.revenue / 100)}
               </span>
               {k.change && (
-                <span className={`text-xs font-medium ${k.change.startsWith("-") ? "text-red-500" : "text-emerald-600"}`}>
+                <span className={`text-xs font-medium ${k.change.startsWith("-") ? "text-red-400" : "text-emerald-400"}`}>
                   {k.change}
                 </span>
               )}
@@ -132,7 +132,7 @@ export default async function AdminBookingsPage({
         ))}
       </div>
 
-      <div className="mt-6 rounded-2xl border border-line bg-white p-4 sm:mt-8 sm:p-6">
+      <div className="mt-6 rounded-2xl border border-line bg-surface p-4 sm:mt-8 sm:p-6">
         <h2 className="text-sm font-medium text-ink">Przychód dzienny — ostatnie 14 dni</h2>
         <div className="mt-5 overflow-x-auto">
           <div className="flex min-w-[480px] items-end gap-1.5 sm:min-w-0 sm:gap-2" style={{ height: 120 }}>

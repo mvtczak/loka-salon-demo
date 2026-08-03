@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #15120d;
-  --foreground: #f1ebdf;
-  --cream: #15120d;
-  --cream-dark: #1d1911;
-  --surface: #241f16;
-  --ink: #f1ebdf;
-  --ink-soft: #a89a84;
-  --amber: #d1a355;
-  --amber-dark: #a97e3d;
-  --line: #362e21;
-  --on-amber: #211a10;
+  --background: #131110;
+  --foreground: #eeeae2;
+  --cream: #131110;
+  --cream-dark: #1b1817;
+  --surface: #1f1c1a;
+  --ink: #eeeae2;
+  --ink-soft: #93897c;
+  --amber: #c9a227;
+  --amber-dark: #8f7218;
+  --line: #332e29;
+  --on-amber: #131110;
 }
 
 @theme inline {
@@ -26,8 +26,8 @@
   --color-amber-dark: var(--amber-dark);
   --color-line: var(--line);
   --color-onamber: var(--on-amber);
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-worksans);
+  --font-display: var(--font-oswald);
 }
 
 body {
@@ -37,10 +37,24 @@ body {
 }
 
 .font-serif-display {
-  font-family: var(--font-serif), Georgia, serif;
+  font-family: var(--font-display), "Arial Narrow", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 
 ::selection {
   background: var(--amber);
-  color: #17130d;
+  color: #131110;
+}
+
+.leader-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.leader-row .leader-fill {
+  flex: 1;
+  border-bottom: 1px dotted var(--line);
+  transform: translateY(-4px);
 }

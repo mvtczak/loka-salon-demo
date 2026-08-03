@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Service {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String
+  category    String
+  durationMin Int
+  priceCents  Int
+  image       String
+  popular     Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  bookings    Booking[]
+}
+
+model Stylist {
+  id        String    @id @default(cuid())
+  name      String
+  slug      String    @unique
+  title     String
+  bio       String
+  image     String
+  startHour Int       @default(9)
+  endHour   Int       @default(19)
+  workDays  String    @default("1,2,3,4,5,6")
+  createdAt DateTime  @default(now())
+  bookings  Booking[]
+}
+
+model Booking {
+  id            String   @id @default(cuid())
+  serviceId     String
+  service       Service  @relation(fields: [serviceId], references: [id])
+  stylistId     String
+  stylist       Stylist  @relation(fields: [stylistId], references: [id])
+  date          DateTime
+  startTime     String
+  endTime       String
+  customerName  String
+  customerEmail String
+  customerPhone String
+  notes         String?
+  status        String   @default("confirmed")
+  createdAt     DateTime @default(now())
+}

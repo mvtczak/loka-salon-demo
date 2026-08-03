@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Oswald, Work_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AdminBanner from "@/components/AdminBanner";
 
-const inter = Inter({
-  variable: "--font-inter",
+const worksans = Work_Sans({
+  variable: "--font-worksans",
   subsets: ["latin", "latin-ext"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const oswald = Oswald({
+  variable: "--font-oswald",
   subsets: ["latin", "latin-ext"],
 });
 
@@ -57,7 +57,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl">
-      <body className={`${inter.variable} ${playfair.variable} antialiased`}>
+      <body className={`${worksans.variable} ${oswald.variable} antialiased`}>
         <AdminBanner />
         <Header />
         <main className="min-h-screen">{children}</main>

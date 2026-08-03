@@ -7,15 +7,22 @@ type Stylist = {
   image: string;
 };
 
-export default function StylistCard({ stylist }: { stylist: Stylist }) {
+export default function StylistCard({ stylist, index }: { stylist: Stylist; index?: number }) {
   return (
-    <div className="flex flex-col items-center text-center">
-      <div className="relative h-40 w-40 overflow-hidden rounded-full bg-cream-dark sm:h-48 sm:w-48">
-        <Image src={stylist.image} alt={stylist.name} fill className="object-cover" sizes="200px" />
+    <div className="border border-line bg-surface">
+      <div className="relative aspect-[3/4] overflow-hidden border-b border-line bg-cream-dark">
+        <Image src={stylist.image} alt={stylist.name} fill className="object-cover grayscale-[20%]" sizes="240px" />
+        {typeof index === "number" && (
+          <span className="absolute left-0 top-0 bg-ink px-2 py-1 font-serif-display text-xs text-cream">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+        )}
       </div>
-      <h3 className="mt-4 font-serif-display text-lg text-ink">{stylist.name}</h3>
-      <span className="text-xs uppercase tracking-wide text-amber-dark">{stylist.title}</span>
-      <p className="mt-2 max-w-[220px] text-sm text-ink-soft">{stylist.bio}</p>
+      <div className="p-4">
+        <h3 className="font-serif-display text-base text-ink">{stylist.name}</h3>
+        <span className="text-xs uppercase tracking-wide text-amber">{stylist.title}</span>
+        <p className="mt-2 text-sm text-ink-soft">{stylist.bio}</p>
+      </div>
     </div>
   );
 }

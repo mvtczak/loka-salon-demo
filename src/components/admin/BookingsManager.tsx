@@ -28,7 +28,7 @@ function StatusBadge({ status }: { status: string }) {
     cancelled: { label: "Anulowana", cls: "bg-red-500/15 text-red-400" },
   };
   const s = map[status] ?? { label: status, cls: "bg-cream-dark text-ink-soft" };
-  return <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${s.cls}`}>{s.label}</span>;
+  return <span className={`rounded-none px-2.5 py-1 text-xs font-medium ${s.cls}`}>{s.label}</span>;
 }
 
 export default function BookingsManager({ initialBookings }: { initialBookings: AdminBooking[] }) {
@@ -47,19 +47,19 @@ export default function BookingsManager({ initialBookings }: { initialBookings: 
 
   return (
     <div className="mt-8">
-      <div className="rounded-xl border border-amber/40 bg-amber/10 px-4 py-3 text-xs text-amber sm:text-sm">
+      <div className="rounded-none border border-amber/40 bg-amber/10 px-4 py-3 text-xs text-amber sm:text-sm">
         To panel demonstracyjny. Oznaczanie wizyt jako zrealizowane / anulowane działa tylko lokalnie w Twojej
         przeglądarce i nie zmienia żadnych danych na serwerze.
       </div>
 
       {toast && (
-        <div className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink px-5 py-2.5 text-sm text-cream shadow-lg">
+        <div className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-none bg-ink px-5 py-2.5 text-sm text-cream shadow-lg">
           {toast}
         </div>
       )}
 
       {/* Mobile: expandable card list */}
-      <div className="mt-6 rounded-2xl border border-line bg-surface sm:hidden">
+      <div className="mt-6 rounded-none border border-line bg-surface sm:hidden">
         {bookings.length === 0 ? (
           <p className="px-4 py-10 text-center text-sm text-ink-soft">Brak wizyt.</p>
         ) : (
@@ -86,7 +86,7 @@ export default function BookingsManager({ initialBookings }: { initialBookings: 
                 </div>
               </summary>
 
-              <div className="mt-3 space-y-2.5 rounded-xl bg-cream-dark/50 p-3 text-sm">
+              <div className="mt-3 space-y-2.5 rounded-none bg-cream-dark/50 p-3 text-sm">
                 <div>
                   <div className="text-xs uppercase tracking-wide text-ink-soft">Usługa</div>
                   <div className="text-ink-soft">{b.serviceName} · {b.stylistName}</div>
@@ -104,10 +104,10 @@ export default function BookingsManager({ initialBookings }: { initialBookings: 
                 )}
                 {b.status === "confirmed" && (
                   <div className="flex gap-2 pt-1">
-                    <button onClick={() => setStatus(b.id, "completed")} className="flex-1 rounded-lg bg-ink px-3 py-2 text-xs text-cream">
+                    <button onClick={() => setStatus(b.id, "completed")} className="flex-1 rounded-none bg-ink px-3 py-2 text-xs text-cream">
                       Oznacz jako zrealizowaną
                     </button>
-                    <button onClick={() => setStatus(b.id, "cancelled")} className="flex-1 rounded-lg border border-line px-3 py-2 text-xs text-ink">
+                    <button onClick={() => setStatus(b.id, "cancelled")} className="flex-1 rounded-none border border-line px-3 py-2 text-xs text-ink">
                       Anuluj
                     </button>
                   </div>
@@ -119,7 +119,7 @@ export default function BookingsManager({ initialBookings }: { initialBookings: 
       </div>
 
       {/* Desktop / tablet: full table */}
-      <div className="mt-8 hidden overflow-x-auto rounded-2xl border border-line bg-surface sm:block">
+      <div className="mt-8 hidden overflow-x-auto rounded-none border border-line bg-surface sm:block">
         <table className="w-full text-left text-sm">
           <thead className="border-b border-line bg-cream-dark text-xs uppercase tracking-wide text-ink-soft">
             <tr>
@@ -151,10 +151,10 @@ export default function BookingsManager({ initialBookings }: { initialBookings: 
                 <td className="whitespace-nowrap px-4 py-3 text-right">
                   {b.status === "confirmed" && (
                     <div className="flex justify-end gap-2">
-                      <button onClick={() => setStatus(b.id, "completed")} className="rounded-lg bg-ink px-3 py-1.5 text-xs text-cream hover:bg-amber-dark">
+                      <button onClick={() => setStatus(b.id, "completed")} className="rounded-none bg-ink px-3 py-1.5 text-xs text-cream hover:bg-amber-dark">
                         Zrealizowana
                       </button>
-                      <button onClick={() => setStatus(b.id, "cancelled")} className="rounded-lg border border-line px-3 py-1.5 text-xs text-ink hover:border-amber">
+                      <button onClick={() => setStatus(b.id, "cancelled")} className="rounded-none border border-line px-3 py-1.5 text-xs text-ink hover:border-amber">
                         Anuluj
                       </button>
                     </div>

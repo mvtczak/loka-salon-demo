@@ -23,9 +23,9 @@ function formatPLN(cents: number) {
 
 function StatusBadge({ status }: { status: string }) {
   const map: Record<string, { label: string; cls: string }> = {
-    confirmed: { label: "Potwierdzona", cls: "bg-amber/15 text-amber-dark" },
-    completed: { label: "Zrealizowana", cls: "bg-green-100 text-green-700" },
-    cancelled: { label: "Anulowana", cls: "bg-red-100 text-red-600" },
+    confirmed: { label: "Potwierdzona", cls: "bg-amber/15 text-amber" },
+    completed: { label: "Zrealizowana", cls: "bg-green-500/15 text-green-400" },
+    cancelled: { label: "Anulowana", cls: "bg-red-500/15 text-red-400" },
   };
   const s = map[status] ?? { label: status, cls: "bg-cream-dark text-ink-soft" };
   return <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${s.cls}`}>{s.label}</span>;
@@ -47,7 +47,7 @@ export default function BookingsManager({ initialBookings }: { initialBookings: 
 
   return (
     <div className="mt-8">
-      <div className="rounded-xl border border-amber/40 bg-amber/10 px-4 py-3 text-xs text-amber-dark sm:text-sm">
+      <div className="rounded-xl border border-amber/40 bg-amber/10 px-4 py-3 text-xs text-amber sm:text-sm">
         To panel demonstracyjny. Oznaczanie wizyt jako zrealizowane / anulowane działa tylko lokalnie w Twojej
         przeglądarce i nie zmienia żadnych danych na serwerze.
       </div>
@@ -59,7 +59,7 @@ export default function BookingsManager({ initialBookings }: { initialBookings: 
       )}
 
       {/* Mobile: expandable card list */}
-      <div className="mt-6 rounded-2xl border border-line bg-white sm:hidden">
+      <div className="mt-6 rounded-2xl border border-line bg-surface sm:hidden">
         {bookings.length === 0 ? (
           <p className="px-4 py-10 text-center text-sm text-ink-soft">Brak wizyt.</p>
         ) : (
@@ -77,7 +77,7 @@ export default function BookingsManager({ initialBookings }: { initialBookings: 
                 </div>
                 <div className="flex shrink-0 flex-col items-end gap-1">
                   <span className="font-medium text-ink">{formatPLN(b.priceCents)}</span>
-                  <span className="flex items-center gap-1 text-xs text-amber-dark">
+                  <span className="flex items-center gap-1 text-xs text-amber">
                     Rozwiń
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0 transition group-open:rotate-180">
                       <path d="M2.5 5 7 9.5 11.5 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
@@ -119,7 +119,7 @@ export default function BookingsManager({ initialBookings }: { initialBookings: 
       </div>
 
       {/* Desktop / tablet: full table */}
-      <div className="mt-8 hidden overflow-x-auto rounded-2xl border border-line bg-white sm:block">
+      <div className="mt-8 hidden overflow-x-auto rounded-2xl border border-line bg-surface sm:block">
         <table className="w-full text-left text-sm">
           <thead className="border-b border-line bg-cream-dark text-xs uppercase tracking-wide text-ink-soft">
             <tr>

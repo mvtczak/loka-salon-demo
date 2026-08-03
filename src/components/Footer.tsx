@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Camera, Users, MapPin } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -8,6 +9,24 @@ export default function Footer() {
         <p className="mx-auto mt-4 max-w-sm text-sm text-ink-soft">
           Studio fryzjerskie łączące klasyczne rzemiosło z nowoczesnym stylem.
         </p>
+
+        <div className="mt-6 flex items-center justify-center gap-3">
+          <a href="#" aria-label="Instagram" className="flex h-9 w-9 items-center justify-center border border-line text-ink-soft transition hover:border-amber hover:text-amber">
+            <Camera size={16} />
+          </a>
+          <a href="#" aria-label="Facebook" className="flex h-9 w-9 items-center justify-center border border-line text-ink-soft transition hover:border-amber hover:text-amber">
+            <Users size={16} />
+          </a>
+          <a
+            href="https://www.google.com/maps"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Mapa"
+            className="flex h-9 w-9 items-center justify-center border border-line text-ink-soft transition hover:border-amber hover:text-amber"
+          >
+            <MapPin size={16} />
+          </a>
+        </div>
 
         <div className="mx-auto mt-10 h-px w-16 bg-amber" />
 

@@ -17,7 +17,7 @@ export default function ServiceCard({ service }: { service: Service }) {
   return (
     <Link
       href={`/rezerwacja?service=${service.slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white transition hover:border-amber"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-surface transition hover:border-amber"
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-cream-dark">
         <Image
@@ -28,7 +28,7 @@ export default function ServiceCard({ service }: { service: Service }) {
           sizes="(min-width: 768px) 25vw, 50vw"
         />
         {service.popular && (
-          <span className="absolute left-3 top-3 rounded-full bg-amber px-2.5 py-1 text-[11px] font-medium text-white">
+          <span className="absolute left-3 top-3 rounded-full bg-amber px-2.5 py-1 text-[11px] font-medium text-onamber">
             Popularne
           </span>
         )}

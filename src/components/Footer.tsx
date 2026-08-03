@@ -2,43 +2,42 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer id="kontakt" className="border-t border-line bg-cream-dark">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
-        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
+    <footer id="kontakt" className="border-t-2 border-amber bg-cream">
+      <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-24">
+        <span className="font-serif-display text-3xl tracking-[0.3em] text-ink sm:text-4xl">LOKA</span>
+        <p className="mx-auto mt-4 max-w-sm text-sm text-ink-soft">
+          Studio fryzjerskie łączące klasyczne rzemiosło z nowoczesnym stylem.
+        </p>
+
+        <div className="mx-auto mt-10 h-px w-16 bg-amber" />
+
+        <div className="mt-10 grid grid-cols-1 gap-6 text-sm text-ink-soft sm:grid-cols-3">
           <div>
-            <span className="font-serif-display text-xl tracking-[0.2em] text-ink">LOKA</span>
-            <p className="mt-3 max-w-xs text-sm text-ink-soft">
-              Studio fryzjerskie łączące klasyczne rzemiosło z nowoczesnym stylem.
-            </p>
+            <div className="text-[11px] uppercase tracking-[0.2em] text-amber">Adres</div>
+            <div className="mt-2">ul. Kwiatowa 12, Warszawa</div>
           </div>
           <div>
-            <h3 className="text-xs uppercase tracking-wide text-ink-soft">Nawigacja</h3>
-            <ul className="mt-3 space-y-2 text-sm text-ink-soft">
-              <li><Link href="/uslugi" className="hover:text-ink">Usługi</Link></li>
-              <li><Link href="/zespol" className="hover:text-ink">Zespół</Link></li>
-              <li><Link href="/rezerwacja" className="hover:text-ink">Rezerwacja</Link></li>
-              <li><Link href="/admin/rezerwacje" className="hover:text-ink">Panel administracyjny</Link></li>
-            </ul>
+            <div className="text-[11px] uppercase tracking-[0.2em] text-amber">Kontakt</div>
+            <div className="mt-2">+48 500 100 200</div>
+            <div>kontakt@loka-studio.pl</div>
           </div>
           <div>
-            <h3 className="text-xs uppercase tracking-wide text-ink-soft">Kontakt</h3>
-            <ul className="mt-3 space-y-2 text-sm text-ink-soft">
-              <li>ul. Kwiatowa 12, Warszawa</li>
-              <li>+48 500 100 200</li>
-              <li>kontakt@loka-studio.pl</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-xs uppercase tracking-wide text-ink-soft">Godziny otwarcia</h3>
-            <ul className="mt-3 space-y-2 text-sm text-ink-soft">
-              <li>Pon–Sob: 9:00–19:00</li>
-              <li>Niedziela: nieczynne</li>
-            </ul>
+            <div className="text-[11px] uppercase tracking-[0.2em] text-amber">Godziny</div>
+            <div className="mt-2">Pon–Sob: 9:00–19:00</div>
+            <div>Niedziela: nieczynne</div>
           </div>
         </div>
-        <div className="mt-10 border-t border-line pt-6 text-xs text-ink-soft">
+
+        <nav className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs uppercase tracking-[0.15em] text-ink-soft">
+          <Link href="/uslugi" className="hover:text-amber">Usługi</Link>
+          <Link href="/zespol" className="hover:text-amber">Zespół</Link>
+          <Link href="/rezerwacja" className="hover:text-amber">Rezerwacja</Link>
+          <Link href="/admin/rezerwacje" className="hover:text-amber">Panel administracyjny</Link>
+        </nav>
+
+        <p className="mt-10 text-[11px] text-ink-soft/70">
           © {new Date().getFullYear()} LOKA. Projekt demonstracyjny portfolio — dane i wizyty mogą być przykładowe.
-        </div>
+        </p>
       </div>
     </footer>
   );

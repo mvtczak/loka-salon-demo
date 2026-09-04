@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Zespół",
-  description: "Poznaj zespół stylistów i barberów LOKA — doświadczonych specjalistów strzyżenia, koloryzacji i stylizacji.",
+  description: "Poznaj zespół stylistów i barberów LOKA - doświadczonych specjalistów strzyżenia, koloryzacji i stylizacji.",
   alternates: { canonical: "/zespol" },
 };
 

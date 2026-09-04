@@ -40,7 +40,7 @@ export default async function ConfirmationPage({
       </div>
       <h1 className="mt-5 font-serif-display text-2xl text-ink sm:text-3xl">Wizyta zarezerwowana</h1>
       <p className="mt-2 text-sm text-ink-soft">
-        Potwierdzenie zostało &bdquo;wysłane&rdquo; na adres {booking.customerEmail} (demo — e-mail nie jest realnie wysyłany).
+        Potwierdzenie zostało &bdquo;wysłane&rdquo; na adres {booking.customerEmail} (demo - e-mail nie jest realnie wysyłany).
       </p>
 
       <div className="mt-8 rounded-none border border-line bg-surface p-5 text-left text-sm">

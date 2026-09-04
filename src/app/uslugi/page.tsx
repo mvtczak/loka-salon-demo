@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Usługi i cennik",
-  description: "Pełny cennik usług fryzjerskich LOKA — strzyżenie, koloryzacja, stylizacja, pielęgnacja i usługi dla brody.",
+  description: "Pełny cennik usług fryzjerskich LOKA - strzyżenie, koloryzacja, stylizacja, pielęgnacja i usługi dla brody.",
   alternates: { canonical: "/uslugi" },
 };
 

@@ -3,18 +3,18 @@ import { Camera, Users, MapPin } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer id="kontakt" className="border-t-2 border-amber bg-cream">
-      <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-24">
+    <footer id="kontakt" className="bg-grain border-t-2 border-amber bg-cream">
+      <div className="relative mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-24">
         <span className="font-serif-display text-3xl tracking-[0.3em] text-ink sm:text-4xl">LOKA</span>
         <p className="mx-auto mt-4 max-w-sm text-sm text-ink-soft">
           Studio fryzjerskie łączące klasyczne rzemiosło z nowoczesnym stylem.
         </p>
 
         <div className="mt-6 flex items-center justify-center gap-3">
-          <a href="#" aria-label="Instagram" className="flex h-9 w-9 items-center justify-center border border-line text-ink-soft transition hover:border-amber hover:text-amber">
+          <a href="#" aria-label="Instagram" className="flex h-9 w-9 items-center justify-center border border-line text-ink-soft transition hover:border-amber hover:text-amber hover:shadow-amber-glow">
             <Camera size={16} />
           </a>
-          <a href="#" aria-label="Facebook" className="flex h-9 w-9 items-center justify-center border border-line text-ink-soft transition hover:border-amber hover:text-amber">
+          <a href="#" aria-label="Facebook" className="flex h-9 w-9 items-center justify-center border border-line text-ink-soft transition hover:border-amber hover:text-amber hover:shadow-amber-glow">
             <Users size={16} />
           </a>
           <a
@@ -22,7 +22,7 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer"
             aria-label="Mapa"
-            className="flex h-9 w-9 items-center justify-center border border-line text-ink-soft transition hover:border-amber hover:text-amber"
+            className="flex h-9 w-9 items-center justify-center border border-line text-ink-soft transition hover:border-amber hover:text-amber hover:shadow-amber-glow"
           >
             <MapPin size={16} />
           </a>

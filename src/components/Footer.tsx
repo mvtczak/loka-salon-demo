@@ -55,7 +55,7 @@ export default function Footer() {
         </nav>
 
         <p className="mt-10 text-[11px] text-ink-soft/70">
-          © {new Date().getFullYear()} LOKA. Projekt demonstracyjny portfolio — dane i wizyty mogą być przykładowe.
+          © {new Date().getFullYear()} LOKA. Projekt demonstracyjny portfolio - dane i wizyty mogą być przykładowe.
         </p>
       </div>
     </footer>

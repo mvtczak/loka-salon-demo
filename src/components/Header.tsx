@@ -30,7 +30,7 @@ export default function Header() {
             <Link
               key={l.label}
               href={l.href}
-              className="whitespace-nowrap border-b border-transparent pb-1 transition hover:border-amber hover:text-ink"
+              className="whitespace-nowrap border-b border-transparent pb-1 transition-colors duration-300 hover:border-amber hover:text-ink"
             >
               {l.label}
             </Link>
@@ -40,7 +40,7 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <Link
             href="/rezerwacja"
-            className="hidden items-center gap-2 whitespace-nowrap border border-amber bg-amber px-5 py-2.5 text-xs uppercase tracking-[0.15em] text-onamber transition hover:bg-transparent hover:text-amber sm:inline-flex"
+            className="hidden items-center gap-2 whitespace-nowrap border border-amber bg-amber px-5 py-2.5 text-xs uppercase tracking-[0.15em] text-onamber shadow-amber-glow transition hover:bg-transparent hover:text-amber sm:inline-flex"
           >
             <Calendar size={14} strokeWidth={2} />
             Zarezerwuj wizytę

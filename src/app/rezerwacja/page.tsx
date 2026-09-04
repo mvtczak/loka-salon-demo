@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Rezerwacja wizyty",
-  description: "Zarezerwuj wizytę w LOKA online — wybierz usługę, stylistę i dogodny termin.",
+  description: "Zarezerwuj wizytę w LOKA online - wybierz usługę, stylistę i dogodny termin.",
   alternates: { canonical: "/rezerwacja" },
 };
 

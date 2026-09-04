@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 import ServiceCard from "@/components/ServiceCard";
 import StylistCard from "@/components/StylistCard";
 import Eyebrow from "@/components/Eyebrow";
-import { Calendar, ArrowRight, ScissorsIcon, Quote } from "lucide-react";
+import { Calendar, ArrowRight, ScissorsIcon, Quote, ChevronDown } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -17,6 +17,17 @@ const testimonials = [
   { name: "Marta W.", text: "Najlepsze balayage jakie kiedykolwiek miałam. Rezerwacja online zajęła dosłownie minutę.", rating: 5 },
   { name: "Kamil S.", text: "Regularnie strzygę się u Kacpra — zawsze punktualnie i dokładnie tak jak chciałem.", rating: 5 },
   { name: "Aleksandra P.", text: "Upięcie na wesele siostry było przepiękne. Polecam każdemu, kto szuka czegoś wyjątkowego.", rating: 5 },
+];
+
+const marqueeItems = ["Strzyżenie", "Koloryzacja", "Balayage", "Stylizacja", "Pielęgnacja", "Upięcia"];
+
+const gallery = [
+  "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=1200&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1560869713-7d0a29430803?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=1200&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=800&auto=format&fit=crop",
 ];
 
 export default async function HomePage() {
@@ -49,7 +60,7 @@ export default async function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* Hero */}
-      <section className="relative flex min-h-[80vh] items-end overflow-hidden border-b-2 border-amber sm:min-h-[88vh]">
+      <section className="bg-grain relative flex min-h-[86vh] items-end overflow-hidden border-b-2 border-amber sm:min-h-[92vh]">
         <Image
           src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=1600&auto=format&fit=crop"
           alt="Wnętrze salonu LOKA"
@@ -58,8 +69,8 @@ export default async function HomePage() {
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0e0c0a] via-[#0e0c0a]/70 to-[#0e0c0a]/20" />
-        <div className="relative mx-auto w-full max-w-7xl px-4 pb-14 sm:px-6 sm:pb-20">
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0e0c0a] via-[#0e0c0a]/75 to-[#0e0c0a]/25" />
+        <div className="animate-fade-up relative mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24">
           <span className="text-xs uppercase tracking-[0.4em] text-amber">Studio fryzjerskie · od 2014</span>
           <h1 className="mt-4 font-serif-display text-4xl leading-[0.95] text-ink sm:text-6xl md:text-7xl">
             Rzemiosło.
@@ -71,7 +82,7 @@ export default async function HomePage() {
             fryzjera i dogodny termin w niecałe dwie minuty.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/rezerwacja" className="group inline-flex items-center gap-2.5 border border-amber bg-amber px-6 py-3 text-xs uppercase tracking-[0.15em] text-onamber transition hover:bg-transparent hover:text-amber">
+            <Link href="/rezerwacja" className="group inline-flex items-center gap-2.5 border border-amber bg-amber px-6 py-3 text-xs uppercase tracking-[0.15em] text-onamber shadow-amber-glow transition hover:bg-transparent hover:text-amber">
               <Calendar size={14} strokeWidth={2} />
               Zarezerwuj wizytę
               <ArrowRight size={14} strokeWidth={2} className="transition group-hover:translate-x-1" />
@@ -82,7 +93,20 @@ export default async function HomePage() {
             </Link>
           </div>
         </div>
+        <ChevronDown size={20} className="absolute bottom-6 right-6 hidden animate-bounce text-amber/70 sm:block" />
       </section>
+
+      {/* Marquee strip */}
+      <div className="overflow-hidden border-b border-line bg-surface py-3">
+        <div className="animate-marquee flex w-max items-center gap-10 whitespace-nowrap">
+          {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((item, i) => (
+            <span key={i} className="flex items-center gap-10 text-xs uppercase tracking-[0.3em] text-ink-soft">
+              {item}
+              <span className="text-amber">✦</span>
+            </span>
+          ))}
+        </div>
+      </div>
 
       {/* Popular services */}
       <section className="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20">
@@ -91,13 +115,13 @@ export default async function HomePage() {
             <Eyebrow>Cennik</Eyebrow>
             <h2 className="mt-2 font-serif-display text-2xl text-ink sm:text-3xl">Najczęściej wybierane usługi</h2>
           </div>
-          <Link href="/uslugi" className="text-xs uppercase tracking-[0.15em] text-amber hover:text-ink">
+          <Link href="/uslugi" className="text-xs uppercase tracking-[0.15em] text-amber transition hover:text-ink">
             Pełny cennik →
           </Link>
         </div>
         <div className="mt-6 border-t border-line sm:mt-8">
-          {popularServices.map((s) => (
-            <ServiceCard key={s.id} service={s} />
+          {popularServices.map((s, i) => (
+            <ServiceCard key={s.id} service={s} index={i} />
           ))}
         </div>
       </section>
@@ -123,23 +147,22 @@ export default async function HomePage() {
           <Eyebrow align="center">Galeria</Eyebrow>
           <h2 className="mt-2 font-serif-display text-2xl text-ink sm:text-3xl">Nasze realizacje</h2>
         </div>
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:mt-14 sm:gap-4 md:grid-cols-3">
-          {[
-            "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=800&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=800&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1560869713-7d0a29430803?q=80&w=800&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=800&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=800&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=800&auto=format&fit=crop",
-          ].map((src, i) => (
-            <div key={i} className="relative aspect-square overflow-hidden rounded-none bg-cream-dark">
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:mt-14 sm:gap-4 md:grid-cols-4 md:auto-rows-[9rem]">
+          {gallery.map((src, i) => (
+            <div
+              key={i}
+              className={`group relative overflow-hidden bg-cream-dark ${
+                i === 0 ? "col-span-2 row-span-2 aspect-square md:aspect-auto" : "aspect-square md:aspect-auto"
+              }`}
+            >
               <Image
                 src={src}
                 alt="Realizacja LOKA"
                 fill
-                className="object-cover transition duration-300 hover:scale-105"
-                sizes="(min-width: 768px) 33vw, 50vw"
+                className="object-cover grayscale-[15%] transition duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                sizes="(min-width: 768px) 25vw, 50vw"
               />
+              <div className="absolute inset-0 bg-ink/0 transition group-hover:bg-ink/10" />
             </div>
           ))}
         </div>
@@ -153,10 +176,10 @@ export default async function HomePage() {
         </div>
         <div className="mt-10 grid gap-6 sm:mt-14 md:grid-cols-3">
           {testimonials.map((t) => (
-            <div key={t.name} className="relative border border-line bg-surface p-6">
+            <div key={t.name} className="group relative border border-line bg-surface p-6 transition duration-300 hover:-translate-y-1 hover:border-amber/60">
               <Quote size={28} className="text-amber/30" fill="currentColor" strokeWidth={0} />
               <div className="mt-2 text-amber">{"★".repeat(t.rating)}</div>
-              <p className="mt-3 text-sm text-ink-soft">&ldquo;{t.text}&rdquo;</p>
+              <p className="mt-3 text-sm leading-relaxed text-ink-soft">&ldquo;{t.text}&rdquo;</p>
               <div className="mt-4 text-sm font-medium uppercase tracking-wide text-ink">{t.name}</div>
             </div>
           ))}
@@ -164,13 +187,13 @@ export default async function HomePage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-ink">
-        <div className="mx-auto max-w-4xl px-4 py-14 text-center sm:px-6 sm:py-20">
+      <section className="bg-grain bg-ink">
+        <div className="relative mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-24">
           <h2 className="font-serif-display text-2xl text-cream sm:text-3xl">Gotowy na zmianę stylu?</h2>
           <p className="mt-3 text-cream/70">Zarezerwuj wizytę online — bez telefonów, bez czekania.</p>
           <Link
             href="/rezerwacja"
-            className="group mt-7 inline-flex items-center gap-2.5 border border-amber bg-amber px-7 py-3 text-xs uppercase tracking-[0.15em] text-onamber transition hover:bg-transparent hover:text-amber"
+            className="group mt-7 inline-flex items-center gap-2.5 border border-amber bg-amber px-7 py-3 text-xs uppercase tracking-[0.15em] text-onamber shadow-amber-glow transition hover:bg-transparent hover:text-amber"
           >
             <Calendar size={14} strokeWidth={2} />
             Zarezerwuj wizytę

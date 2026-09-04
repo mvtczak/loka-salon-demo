@@ -20,17 +20,17 @@ const SITE_URL = "https://loka-salon-demo.vercel.app";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "LOKA — Studio Fryzjerskie",
+    default: "LOKA - Studio Fryzjerskie",
     template: "%s | LOKA",
   },
   description:
-    "LOKA — studio fryzjerskie w centrum miasta. Strzyżenie, koloryzacja i stylizacja. Rezerwuj wizytę online w 2 minuty.",
+    "LOKA - studio fryzjerskie w centrum miasta. Strzyżenie, koloryzacja i stylizacja. Rezerwuj wizytę online w 2 minuty.",
   keywords: ["fryzjer", "salon fryzjerski", "koloryzacja", "balayage", "rezerwacja online", "LOKA"],
   openGraph: {
     type: "website",
     locale: "pl_PL",
     siteName: "LOKA",
-    title: "LOKA — Studio Fryzjerskie",
+    title: "LOKA - Studio Fryzjerskie",
     description: "Strzyżenie, koloryzacja i stylizacja. Rezerwuj wizytę online w 2 minuty.",
     url: SITE_URL,
     images: [
@@ -38,13 +38,13 @@ export const metadata: Metadata = {
         url: "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=1200&auto=format&fit=crop",
         width: 1200,
         height: 630,
-        alt: "LOKA — Studio Fryzjerskie",
+        alt: "LOKA - Studio Fryzjerskie",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "LOKA — Studio Fryzjerskie",
+    title: "LOKA - Studio Fryzjerskie",
     description: "Strzyżenie, koloryzacja i stylizacja. Rezerwuj wizytę online w 2 minuty.",
   },
   robots: { index: true, follow: true },

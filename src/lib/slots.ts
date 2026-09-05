@@ -51,6 +51,43 @@ export async function getAvailableSlots(stylistId: string, serviceId: string, da
   });
 }
 
+export type NextSlot = {
+  stylistId: string;
+  stylistName: string;
+  dateStr: string;
+  time: string;
+  isToday: boolean;
+};
+
+export async function getNextAvailableSlot(): Promise<NextSlot | null> {
+  const [stylists, service] = await Promise.all([
+    prisma.stylist.findMany(),
+    prisma.service.findFirst({ where: { popular: true }, orderBy: { durationMin: "asc" } }),
+  ]);
+  if (!service || stylists.length === 0) return null;
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  for (let dayOffset = 0; dayOffset < 7; dayOffset++) {
+    const d = new Date(today);
+    d.setDate(d.getDate() + dayOffset);
+    const dateStr = d.toISOString().slice(0, 10);
+
+    let best: { stylistId: string; stylistName: string; time: string } | null = null;
+    for (const stylist of stylists) {
+      const slots = await getAvailableSlots(stylist.id, service.id, dateStr);
+      if (slots.length > 0 && (!best || slots[0] < best.time)) {
+        best = { stylistId: stylist.id, stylistName: stylist.name, time: slots[0] };
+      }
+    }
+    if (best) {
+      return { ...best, dateStr, isToday: dayOffset === 0 };
+    }
+  }
+  return null;
+}
+
 export function addMinutesToTime(time: string, minutes: number): string {
   const [h, m] = time.split(":").map(Number);
   const total = h * 60 + m + minutes;

@@ -297,7 +297,7 @@ export default function BookingWizard({
           </div>
 
           <div className="rounded-none border border-amber/40 bg-amber/10 px-4 py-3 text-xs text-amber sm:text-sm">
-            To projekt demonstracyjny portfolio — nie podawaj tu prawdziwych danych osobowych. Wpisz dowolne
+            To projekt demonstracyjny portfolio - nie podawaj tu prawdziwych danych osobowych. Wpisz dowolne
             przykładowe imię, e-mail i numer telefonu.
           </div>
 

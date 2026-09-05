@@ -42,7 +42,7 @@ export default function BookingsManager({ initialBookings }: { initialBookings: 
 
   function setStatus(id: string, status: string) {
     setBookings((prev) => prev.map((b) => (b.id === id ? { ...b, status } : b)));
-    showToast("Zmiana widoczna tylko w tej przeglądarce — to demo, nic nie zostało zapisane trwale.");
+    showToast("Zmiana widoczna tylko w tej przeglądarce - to demo, nic nie zostało zapisane trwale.");
   }
 
   return (
@@ -174,7 +174,7 @@ export default function BookingsManager({ initialBookings }: { initialBookings: 
       </div>
 
       <p className="mt-4 text-xs text-ink-soft">
-        Dane demonstracyjne — klienci i wizyty są wygenerowane losowo do celów prezentacji.
+        Dane demonstracyjne - klienci i wizyty są wygenerowane losowo do celów prezentacji.
       </p>
     </div>
   );

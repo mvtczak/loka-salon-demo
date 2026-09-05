@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 const testimonials = [
   { name: "Marta W.", text: "Najlepsze balayage jakie kiedykolwiek miałam. Rezerwacja online zajęła dosłownie minutę.", rating: 5 },
-  { name: "Kamil S.", text: "Regularnie strzygę się u Kacpra — zawsze punktualnie i dokładnie tak jak chciałem.", rating: 5 },
+  { name: "Kamil S.", text: "Regularnie strzygę się u Kacpra - zawsze punktualnie i dokładnie tak jak chciałem.", rating: 5 },
   { name: "Aleksandra P.", text: "Upięcie na wesele siostry było przepiękne. Polecam każdemu, kto szuka czegoś wyjątkowego.", rating: 5 },
 ];
 
@@ -39,7 +39,7 @@ export default async function HomePage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "HairSalon",
-    name: "LOKA — Studio Fryzjerskie",
+    name: "LOKA - Studio Fryzjerskie",
     image: "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=1200",
     address: {
       "@type": "PostalAddress",
@@ -78,7 +78,7 @@ export default async function HomePage() {
             Styl. Szczegół.
           </h1>
           <p className="mt-6 max-w-md text-ink-soft">
-            Strzyżenie, koloryzacja, stylizacja i pielęgnacja w sercu miasta. Zarezerwuj wizytę online — wybierz usługę,
+            Strzyżenie, koloryzacja, stylizacja i pielęgnacja w sercu miasta. Zarezerwuj wizytę online - wybierz usługę,
             fryzjera i dogodny termin w niecałe dwie minuty.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -190,7 +190,7 @@ export default async function HomePage() {
       <section className="bg-grain bg-ink">
         <div className="relative mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-24">
           <h2 className="font-serif-display text-2xl text-cream sm:text-3xl">Gotowy na zmianę stylu?</h2>
-          <p className="mt-3 text-cream/70">Zarezerwuj wizytę online — bez telefonów, bez czekania.</p>
+          <p className="mt-3 text-cream/70">Zarezerwuj wizytę online - bez telefonów, bez czekania.</p>
           <Link
             href="/rezerwacja"
             className="group mt-7 inline-flex items-center gap-2.5 border border-amber bg-amber px-7 py-3 text-xs uppercase tracking-[0.15em] text-onamber shadow-amber-glow transition hover:bg-transparent hover:text-amber"

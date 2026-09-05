@@ -140,7 +140,7 @@ export default async function AdminBookingsPage({
       </div>
 
       <div className="mt-6 rounded-none border border-line bg-surface p-4 sm:mt-8 sm:p-6">
-        <h2 className="text-sm font-medium text-ink">Przychód dzienny — ostatnie 14 dni</h2>
+        <h2 className="text-sm font-medium text-ink">Przychód dzienny - ostatnie 14 dni</h2>
         <div className="mt-5 overflow-x-auto">
           <div className="flex min-w-[480px] items-end gap-1.5 sm:min-w-0 sm:gap-2" style={{ height: 120 }}>
             {days.map((d) => (

@@ -15,6 +15,7 @@ type Service = {
 
 type Stylist = {
   id: string;
+  slug: string;
   name: string;
   title: string;
   workDays: string;
@@ -42,17 +43,21 @@ export default function BookingWizard({
   services,
   stylists,
   preselectedServiceSlug,
+  preselectedStylistSlug,
 }: {
   services: Service[];
   stylists: Stylist[];
   preselectedServiceSlug?: string;
+  preselectedStylistSlug?: string;
 }) {
   const router = useRouter();
+  const preselectedStylist = stylists.find((s) => s.slug === preselectedStylistSlug);
   const [step, setStep] = useState(0);
   const [serviceId, setServiceId] = useState<string>(
     services.find((s) => s.slug === preselectedServiceSlug)?.id ?? ""
   );
-  const [stylistId, setStylistId] = useState<string>("");
+  const [stylistId, setStylistId] = useState<string>(preselectedStylist?.id ?? "");
+  const [stylistLocked, setStylistLocked] = useState(Boolean(preselectedStylist));
   const [dateStr, setDateStr] = useState<string>("");
   const [time, setTime] = useState<string>("");
   const [slots, setSlots] = useState<string[]>([]);
@@ -62,7 +67,8 @@ export default function BookingWizard({
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (preselectedServiceSlug) setStep(1);
+    if (preselectedServiceSlug) setStep(stylistLocked ? 2 : 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preselectedServiceSlug]);
 
   const selectedService = services.find((s) => s.id === serviceId);
@@ -155,6 +161,19 @@ export default function BookingWizard({
       {/* Step 0: Service */}
       {step === 0 && (
         <div className="space-y-6">
+          {stylistLocked && selectedStylist && (
+            <div className="flex items-center justify-between border border-amber/40 bg-amber/10 px-4 py-3 text-xs text-ink sm:text-sm">
+              <span>
+                Rezerwujesz wizytę u <span className="font-medium text-amber">{selectedStylist.name}</span>
+              </span>
+              <button
+                onClick={() => setStylistLocked(false)}
+                className="uppercase tracking-wide text-ink-soft underline-offset-2 hover:text-amber hover:underline"
+              >
+                Zmień
+              </button>
+            </div>
+          )}
           {grouped.map(([category, items]) => (
             <div key={category}>
               <h3 className="mb-2 text-xs uppercase tracking-wide text-ink-soft">{category}</h3>
@@ -181,7 +200,7 @@ export default function BookingWizard({
           ))}
           <button
             disabled={!serviceId}
-            onClick={() => setStep(1)}
+            onClick={() => setStep(stylistLocked ? 2 : 1)}
             className="w-full rounded-none bg-ink px-6 py-3 text-sm text-cream transition hover:bg-amber-dark disabled:cursor-not-allowed disabled:opacity-40"
           >
             Dalej
@@ -272,7 +291,10 @@ export default function BookingWizard({
           )}
 
           <div className="flex gap-3">
-            <button onClick={() => setStep(1)} className="rounded-none border border-line px-6 py-3 text-sm text-ink transition hover:border-amber">
+            <button
+              onClick={() => setStep(stylistLocked ? 0 : 1)}
+              className="rounded-none border border-line px-6 py-3 text-sm text-ink transition hover:border-amber"
+            >
               Wstecz
             </button>
             <button

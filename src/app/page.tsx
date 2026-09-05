@@ -4,7 +4,10 @@ import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import ServiceCard from "@/components/ServiceCard";
 import StylistCard from "@/components/StylistCard";
+import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import Eyebrow from "@/components/Eyebrow";
+import { getNextAvailableSlot } from "@/lib/slots";
+import { formatRelativeDay } from "@/lib/format";
 import { Calendar, ArrowRight, ScissorsIcon, Quote, ChevronDown } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -30,10 +33,29 @@ const gallery = [
   "https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=800&auto=format&fit=crop",
 ];
 
+const beforeAfterPairs = [
+  {
+    label: "Balayage",
+    before: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=1000&auto=format&fit=crop",
+    after: "https://images.unsplash.com/photo-1560869713-7d0a29430803?q=80&w=1000&auto=format&fit=crop",
+  },
+  {
+    label: "Upięcie",
+    before: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1000&auto=format&fit=crop",
+    after: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=1000&auto=format&fit=crop",
+  },
+  {
+    label: "Koloryzacja",
+    before: "https://images.unsplash.com/photo-1522336572468-97b06e8ef143?q=80&w=1000&auto=format&fit=crop",
+    after: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=1000&auto=format&fit=crop",
+  },
+];
+
 export default async function HomePage() {
-  const [popularServices, stylists] = await Promise.all([
+  const [popularServices, stylists, nextSlot] = await Promise.all([
     prisma.service.findMany({ where: { popular: true }, take: 4 }),
     prisma.stylist.findMany({ take: 5 }),
+    getNextAvailableSlot(),
   ]);
 
   const jsonLd = {
@@ -81,6 +103,23 @@ export default async function HomePage() {
             Strzyżenie, koloryzacja, stylizacja i pielęgnacja w sercu miasta. Zarezerwuj wizytę online - wybierz usługę,
             fryzjera i dogodny termin w niecałe dwie minuty.
           </p>
+          {nextSlot && (
+            <Link
+              href={`/rezerwacja?stylist=${stylists.find((s) => s.id === nextSlot.stylistId)?.slug ?? ""}`}
+              className="group mt-5 inline-flex items-center gap-2.5 border border-amber/40 bg-ink/40 px-4 py-2.5 text-xs text-ink-soft backdrop-blur-sm transition hover:border-amber"
+            >
+              <span className="relative flex h-2 w-2 shrink-0">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-amber" />
+              </span>
+              Najbliższy wolny termin:
+              <span className="font-medium text-amber">
+                {formatRelativeDay(nextSlot.dateStr)}, {nextSlot.time}
+              </span>
+              u {nextSlot.stylistName}
+              <ArrowRight size={12} strokeWidth={2} className="transition group-hover:translate-x-1" />
+            </Link>
+          )}
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/rezerwacja" className="group inline-flex items-center gap-2.5 border border-amber bg-amber px-6 py-3 text-xs uppercase tracking-[0.15em] text-onamber shadow-amber-glow transition hover:bg-transparent hover:text-amber">
               <Calendar size={14} strokeWidth={2} />
@@ -147,6 +186,14 @@ export default async function HomePage() {
           <Eyebrow align="center">Galeria</Eyebrow>
           <h2 className="mt-2 font-serif-display text-2xl text-ink sm:text-3xl">Nasze realizacje</h2>
         </div>
+
+        <div className="mx-auto mt-10 max-w-2xl sm:mt-14">
+          <p className="mb-4 text-center text-xs uppercase tracking-[0.2em] text-ink-soft">
+            Przesuń, aby zobaczyć efekt
+          </p>
+          <BeforeAfterSlider pairs={beforeAfterPairs} />
+        </div>
+
         <div className="mt-10 grid grid-cols-2 gap-3 sm:mt-14 sm:gap-4 md:grid-cols-4 md:auto-rows-[9rem]">
           {gallery.map((src, i) => (
             <div

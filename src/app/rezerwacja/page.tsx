@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 export default async function BookingPage({
   searchParams,
 }: {
-  searchParams: Promise<{ service?: string }>;
+  searchParams: Promise<{ service?: string; stylist?: string }>;
 }) {
-  const { service } = await searchParams;
+  const { service, stylist } = await searchParams;
   const [services, stylists] = await Promise.all([
     prisma.service.findMany({ orderBy: { category: "asc" } }),
     prisma.stylist.findMany(),
@@ -28,7 +28,12 @@ export default async function BookingPage({
         <Eyebrow align="center">Rezerwacja</Eyebrow>
         <h1 className="mt-2 font-serif-display text-2xl text-ink sm:text-3xl">Umów wizytę</h1>
       </div>
-      <BookingWizard services={services} stylists={stylists} preselectedServiceSlug={service} />
+      <BookingWizard
+        services={services}
+        stylists={stylists}
+        preselectedServiceSlug={service}
+        preselectedStylistSlug={stylist}
+      />
     </div>
   );
 }
